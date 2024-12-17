@@ -11,10 +11,10 @@ export default function Demo() {
   const [title, setTitle] = useState("");
 
   const { data: todos, isLoading } = useQuery({
-    queryKey: ["todos", { search }],
-    queryFn: () => fetchTodos(search),
-    staleTime: Infinity,
-    cacheTime: 0,
+    queryKey: ["todos", { search }], // it's doing caching magic etc
+    queryFn: () => fetchTodos(search), // queryFunction
+    staleTime: Infinity, // react will not refetch data even in the background
+    cacheTime: 0, // it shall never cache request
   });
 
   const { mutateAsync: addTodoMutation } = useMutation({
